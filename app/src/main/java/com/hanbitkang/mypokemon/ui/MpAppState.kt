@@ -34,14 +34,14 @@ class MpAppState(
         TopLevelDestination(
             PokemonDestination.route,
             PokemonDestination.destination,
-            MpIcons.CrueltyFree,
-            MpIcons.CrueltyFree,
+            MpIcons.BaselineCrueltyFree,
+            MpIcons.OutlineCrueltyFree,
             com.hanbitkang.feature_favorite.R.string.my_favorites
         ),
         TopLevelDestination(
             FavoriteDestination.route,
             FavoriteDestination.destination,
-            MpIcons.BookmarkBorder,
+            MpIcons.Bookmark,
             MpIcons.BookmarkBorder,
             com.hanbitkang.feature_pokemon.R.string.pokemon_list
         )
