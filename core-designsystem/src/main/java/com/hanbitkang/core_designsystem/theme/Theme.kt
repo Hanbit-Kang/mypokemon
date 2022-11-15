@@ -1,4 +1,4 @@
-package com.hanbitkang.mypokemon.ui.theme
+package com.hanbitkang.core_designsystem.theme
 
 import android.app.Activity
 import android.os.Build
