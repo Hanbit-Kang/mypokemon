@@ -1,21 +1,18 @@
 package com.hanbitkang.mypokemon.ui
 
-import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.hanbitkang.core_designsystem.theme.MyPokemonTheme
-import com.hanbitkang.core_navigation.MpNavigationDestination
-import com.hanbitkang.feature_favorite.navigation.FavoriteDestination
-import com.hanbitkang.feature_pokemon.navigation.PokemonDestination
 import com.hanbitkang.mypokemon.navigation.MpNavHost
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
@@ -47,7 +44,10 @@ private fun MpBottomBar(
     destinations: List<TopLevelDestination>,
     currentDestination: NavDestination?
 ) {
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = Color.White,
+        contentColor = MaterialTheme.colorScheme.primary
+    ) {
         destinations.forEach { destination ->
             val selected = currentDestination?.hierarchy?.any { it.route == destination.route } == true
             BottomNavigationItem(
