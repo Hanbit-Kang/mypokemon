@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MyPokemon"
 include ':app'
+include ':core-designsystem'
+include ':core-navigation'
+include ':feature-pokemon'
+include ':feature-favorite'
