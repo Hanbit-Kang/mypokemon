@@ -1,6 +1,6 @@
 package com.hanbitkang.mypokemon.navigation
 
-import com.hanbitkang.core.navigation.MpNavigationDestination
+import com.hanbitkang.core.designsystem.MpNavigationDestination
 
 data class TopLevelDestination(
     override val route: String,

@@ -1,4 +1,4 @@
-package com.hanbitkang.core.navigation
+package com.hanbitkang.core.designsystem
 
 interface MpNavigationDestination {
     val route: String

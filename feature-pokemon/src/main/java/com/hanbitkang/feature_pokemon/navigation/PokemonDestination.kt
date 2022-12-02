@@ -2,7 +2,7 @@ package com.hanbitkang.feature_pokemon.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.hanbitkang.core.navigation.MpNavigationDestination
+import com.hanbitkang.core.designsystem.MpNavigationDestination
 import com.hanbitkang.feature_pokemon.PokemonScreen
 
 object PokemonDestination : MpNavigationDestination {
