@@ -1,4 +1,4 @@
-package com.hanbitkang.core_network
+package com.hanbitkang.core.network
 
 import org.junit.Test
 

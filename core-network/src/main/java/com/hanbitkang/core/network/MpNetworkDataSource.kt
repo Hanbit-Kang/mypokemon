@@ -1,6 +1,6 @@
-package com.hanbitkang.core_network
+package com.hanbitkang.core.network
 
-import com.hanbitkang.core_network.model.PokemonResponse
+import com.hanbitkang.core.network.model.PokemonResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

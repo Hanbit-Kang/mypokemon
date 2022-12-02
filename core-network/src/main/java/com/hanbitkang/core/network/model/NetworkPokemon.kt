@@ -1,4 +1,4 @@
-package com.hanbitkang.core_network.model
+package com.hanbitkang.core.network.model
 
 data class NetworkPokemon (
     val name: String,
