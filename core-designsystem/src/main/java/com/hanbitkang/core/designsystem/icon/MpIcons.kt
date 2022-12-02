@@ -1,6 +1,6 @@
 package com.hanbitkang.core.designsystem.icon
 
-import com.hanbitkang.core_designsystem.R
+import com.hanbitkang.core.designsystem.R
 
 object MpIcons {
     val OutlineCrueltyFree = R.drawable.ic_outline_cruelty_free
