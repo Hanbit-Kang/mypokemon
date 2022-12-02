@@ -1,4 +1,4 @@
-package com.hanbitkang.feature_pokemon
+package com.hanbitkang.feature.pokemon
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.hanbitkang.feature_pokemon.test", appContext.packageName)
+        assertEquals("com.hanbitkang.feature.pokemon.test", appContext.packageName)
     }
 }

@@ -1,9 +1,9 @@
-package com.hanbitkang.feature_pokemon.navigation
+package com.hanbitkang.feature.pokemon.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.hanbitkang.core.designsystem.MpNavigationDestination
-import com.hanbitkang.feature_pokemon.PokemonScreen
+import com.hanbitkang.feature.pokemon.PokemonScreen
 
 object PokemonDestination : MpNavigationDestination {
     override val route = "pokemon_route"
