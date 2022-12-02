@@ -1,6 +1,5 @@
-package com.hanbitkang.core_designsystem.icon
+package com.hanbitkang.core.designsystem.icon
 
-import androidx.compose.material.icons.Icons
 import com.hanbitkang.core_designsystem.R
 
 object MpIcons {

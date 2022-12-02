@@ -1,4 +1,4 @@
-package com.hanbitkang.core_designsystem
+package com.hanbitkang.core.designsystem
 
 import org.junit.Test
 

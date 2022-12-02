@@ -1,4 +1,4 @@
-package com.hanbitkang.core_designsystem
+package com.hanbitkang.core
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.hanbitkang.core_designsystem.test", appContext.packageName)
+        assertEquals("com.hanbitkang.core.designsystem.test", appContext.packageName)
     }
 }

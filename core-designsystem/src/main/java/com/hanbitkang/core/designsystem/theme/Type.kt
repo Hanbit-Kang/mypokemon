@@ -1,4 +1,4 @@
-package com.hanbitkang.core_designsystem.theme
+package com.hanbitkang.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

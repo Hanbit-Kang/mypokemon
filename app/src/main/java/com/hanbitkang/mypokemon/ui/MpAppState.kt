@@ -7,11 +7,9 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.hanbitkang.core_designsystem.icon.MpIcons
-import com.hanbitkang.core_navigation.MpNavigationDestination
+import com.hanbitkang.core.designsystem.icon.MpIcons
 import com.hanbitkang.feature_favorite.navigation.FavoriteDestination
 import com.hanbitkang.feature_pokemon.navigation.PokemonDestination
-import com.hanbitkang.mypokemon.R
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
 @Composable
