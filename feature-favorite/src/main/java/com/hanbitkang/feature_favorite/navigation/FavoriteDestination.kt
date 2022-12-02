@@ -2,7 +2,7 @@ package com.hanbitkang.feature_favorite.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.hanbitkang.core_navigation.MpNavigationDestination
+import com.hanbitkang.core.navigation.MpNavigationDestination
 import com.hanbitkang.feature_favorite.FavoriteScreen
 
 object FavoriteDestination : MpNavigationDestination {
