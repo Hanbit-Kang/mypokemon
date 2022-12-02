@@ -1,9 +1,9 @@
-package com.hanbitkang.feature_favorite.navigation
+package com.hanbitkang.feature.favorite.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.hanbitkang.core.designsystem.MpNavigationDestination
-import com.hanbitkang.feature_favorite.FavoriteScreen
+import com.hanbitkang.feature.favorite.FavoriteScreen
 
 object FavoriteDestination : MpNavigationDestination {
     override val route = "favorite_route"

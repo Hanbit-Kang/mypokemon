@@ -1,4 +1,4 @@
-package com.hanbitkang.feature_favorite
+package com.hanbitkang.feature.favorite
 
 import org.junit.Test
 

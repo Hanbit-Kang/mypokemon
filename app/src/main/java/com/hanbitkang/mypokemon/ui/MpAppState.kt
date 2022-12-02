@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.hanbitkang.core.designsystem.icon.MpIcons
-import com.hanbitkang.feature_favorite.navigation.FavoriteDestination
+import com.hanbitkang.feature.favorite.navigation.FavoriteDestination
 import com.hanbitkang.feature_pokemon.navigation.PokemonDestination
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
@@ -34,7 +34,7 @@ class MpAppState(
             PokemonDestination.destination,
             MpIcons.BaselineCrueltyFree,
             MpIcons.OutlineCrueltyFree,
-            com.hanbitkang.feature_favorite.R.string.my_favorites
+            com.hanbitkang.feature.favorite.R.string.my_favorites
         ),
         TopLevelDestination(
             FavoriteDestination.route,

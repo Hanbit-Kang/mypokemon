@@ -1,4 +1,4 @@
-package com.hanbitkang.feature_favorite
+package com.hanbitkang.feature.favorite
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
