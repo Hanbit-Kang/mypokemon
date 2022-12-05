@@ -4,6 +4,7 @@
     package="com.hanbitkang.mypokemon">
 
     <application
+        android:name=".MpApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
