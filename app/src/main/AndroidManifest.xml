@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hanbitkang.mypokemon">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MpApplication"
         android:allowBackup="true"
