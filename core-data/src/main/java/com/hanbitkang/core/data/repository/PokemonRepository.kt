@@ -4,5 +4,6 @@ import com.hanbitkang.core.data.model.Pokemon
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
-    fun getPokemonsStream(): Flow<List<Pokemon>>
+    // TODO: Change type to Flow<List<Pokemon>> + remove suspend keyword
+    suspend fun getPokemonsStream(): List<Pokemon>
 }
