@@ -41,7 +41,7 @@ dependencies {
 
     implementation project(path: ':core-designsystem')
     implementation project(path: ':core-navigation')
-    implementation project(path: ':core-network') // TODO: Remove it if not necessary
+    implementation project(path: ':core-data')
 
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
