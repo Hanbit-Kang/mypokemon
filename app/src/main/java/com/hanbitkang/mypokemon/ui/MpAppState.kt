@@ -30,17 +30,17 @@ class MpAppState(
 
     val topLevelDestinations: List<TopLevelDestination> = listOf(
         TopLevelDestination(
-            PokemonDestination.route,
-            PokemonDestination.destination,
-            MpIcons.BaselineCrueltyFree,
-            MpIcons.OutlineCrueltyFree,
-            com.hanbitkang.feature.favorite.R.string.my_favorites
-        ),
-        TopLevelDestination(
             FavoriteDestination.route,
             FavoriteDestination.destination,
             MpIcons.Bookmark,
             MpIcons.BookmarkBorder,
+            com.hanbitkang.feature.favorite.R.string.my_favorites
+        ),
+        TopLevelDestination(
+            PokemonDestination.route,
+            PokemonDestination.destination,
+            MpIcons.BaselineCrueltyFree,
+            MpIcons.OutlineCrueltyFree,
             com.hanbitkang.feature.pokemon.R.string.pokemon_list
         )
     )
