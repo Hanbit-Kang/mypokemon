@@ -7,11 +7,9 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.hanbitkang.core_designsystem.icon.MpIcons
-import com.hanbitkang.core_navigation.MpNavigationDestination
-import com.hanbitkang.feature_favorite.navigation.FavoriteDestination
-import com.hanbitkang.feature_pokemon.navigation.PokemonDestination
-import com.hanbitkang.mypokemon.R
+import com.hanbitkang.core.designsystem.icon.MpIcons
+import com.hanbitkang.feature.favorite.navigation.FavoriteDestination
+import com.hanbitkang.feature.pokemon.navigation.PokemonDestination
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
 @Composable
@@ -32,18 +30,18 @@ class MpAppState(
 
     val topLevelDestinations: List<TopLevelDestination> = listOf(
         TopLevelDestination(
-            PokemonDestination.route,
-            PokemonDestination.destination,
-            MpIcons.BaselineCrueltyFree,
-            MpIcons.OutlineCrueltyFree,
-            com.hanbitkang.feature_favorite.R.string.my_favorites
-        ),
-        TopLevelDestination(
             FavoriteDestination.route,
             FavoriteDestination.destination,
             MpIcons.Bookmark,
             MpIcons.BookmarkBorder,
-            com.hanbitkang.feature_pokemon.R.string.pokemon_list
+            com.hanbitkang.feature.favorite.R.string.my_favorites
+        ),
+        TopLevelDestination(
+            PokemonDestination.route,
+            PokemonDestination.destination,
+            MpIcons.BaselineCrueltyFree,
+            MpIcons.OutlineCrueltyFree,
+            com.hanbitkang.feature.pokemon.R.string.pokemon_list
         )
     )
 }

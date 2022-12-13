@@ -4,14 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.hanbitkang.feature_favorite.navigation.favoriteGraph
-import com.hanbitkang.feature_pokemon.navigation.PokemonDestination
-import com.hanbitkang.feature_pokemon.navigation.pokemonGraph
+import com.hanbitkang.feature.favorite.navigation.FavoriteDestination
+import com.hanbitkang.feature.favorite.navigation.favoriteGraph
+import com.hanbitkang.feature.pokemon.navigation.PokemonDestination
+import com.hanbitkang.feature.pokemon.navigation.pokemonGraph
 
 @Composable
 fun MpNavHost(
     navController: NavHostController,
-    startDestination: String = PokemonDestination.route,
+    startDestination: String = FavoriteDestination.route,
     modifier: Modifier = Modifier
 ) {
     NavHost(
@@ -19,7 +20,7 @@ fun MpNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        pokemonGraph()
         favoriteGraph()
+        pokemonGraph()
     }
 }

@@ -12,7 +12,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import com.hanbitkang.core_designsystem.theme.MyPokemonTheme
+import com.hanbitkang.core.designsystem.theme.MyPokemonTheme
 import com.hanbitkang.mypokemon.navigation.MpNavHost
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
