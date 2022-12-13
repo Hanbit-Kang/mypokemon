@@ -19,7 +19,7 @@ fun MpNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        pokemonGraph()
         favoriteGraph()
+        pokemonGraph()
     }
 }
