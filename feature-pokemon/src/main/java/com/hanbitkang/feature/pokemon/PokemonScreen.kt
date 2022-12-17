@@ -37,8 +37,8 @@ internal fun PokemonScreen(
         Button(
             onClick = {
                 CoroutineScope(Dispatchers.IO).launch {
-                    // TODO: Update local database temporarily
                     // TODO: Get pokemons by network to update local database
+                    viewModel.updateDatabase()
                 }
             }
         ) {

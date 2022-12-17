@@ -6,6 +6,7 @@ import com.hanbitkang.core.data.model.Pokemon
 import com.hanbitkang.core.data.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,4 +21,10 @@ class PokemonViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = listOf()
         )
+
+    fun updateDatabase() {
+        viewModelScope.launch {
+            pokemonRepository.updateDatabase()
+        }
+    }
 }
