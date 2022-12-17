@@ -6,6 +6,7 @@ import com.hanbitkang.core.data.model.Pokemon
 import com.hanbitkang.core.data.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,8 +15,16 @@ class PokemonViewModel @Inject constructor(
 ) : ViewModel() {
 
     // TODO: StateFlow<PokemonUiState>
+    val pokemons: StateFlow<List<Pokemon>> = pokemonRepository.getPokemonsStream()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = listOf()
+        )
 
-    suspend fun getPokemons(): List<Pokemon> {
-        return pokemonRepository.getPokemonsStream()
+    fun updateDatabase() {
+        viewModelScope.launch {
+            pokemonRepository.updateDatabase()
+        }
     }
 }

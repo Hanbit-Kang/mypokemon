@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="MyPokemon.app" target="11" />
       <module name="MyPokemon.core-data" target="11" />
+      <module name="MyPokemon.core-database" target="11" />
       <module name="MyPokemon.core-designsystem" target="11" />
       <module name="MyPokemon.core-network" target="11" />
       <module name="MyPokemon.feature-favorite" target="11" />

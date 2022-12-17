@@ -1,5 +1,6 @@
 package com.hanbitkang.core.data.model
 
+import com.hanbitkang.core.database.model.PokemonEntity
 import com.hanbitkang.core.network.model.NetworkPokemon
 
 data class Pokemon(
@@ -7,5 +8,9 @@ data class Pokemon(
 )
 
 fun NetworkPokemon.toPokemon() = Pokemon(
+    name = name
+)
+
+fun PokemonEntity.toPokemon() = Pokemon(
     name = name
 )
