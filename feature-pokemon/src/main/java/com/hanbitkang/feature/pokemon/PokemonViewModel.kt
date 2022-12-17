@@ -14,8 +14,10 @@ class PokemonViewModel @Inject constructor(
 ) : ViewModel() {
 
     // TODO: StateFlow<PokemonUiState>
-
-    suspend fun getPokemons(): List<Pokemon> {
-        return pokemonRepository.getPokemonsStream()
-    }
+    val pokemons: StateFlow<List<Pokemon>> = pokemonRepository.getPokemonsStream()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = listOf()
+        )
 }

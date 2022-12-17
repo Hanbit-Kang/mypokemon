@@ -31,15 +31,14 @@ fun PokemonRoute(
 internal fun PokemonScreen(
     viewModel: PokemonViewModel
 ) {
-    var pokemons: MutableList<Pokemon> = remember { mutableStateListOf() }
+    val pokemons: List<Pokemon> by viewModel.pokemons.collectAsState()
 
     Column {
         Button(
             onClick = {
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.getPokemons().forEach {
-                        pokemons.add(it)
-                    }
+                    // TODO: Update local database temporarily
+                    // TODO: Get pokemons by network to update local database
                 }
             }
         ) {
