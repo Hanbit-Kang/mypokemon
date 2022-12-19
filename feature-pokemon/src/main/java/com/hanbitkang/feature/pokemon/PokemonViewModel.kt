@@ -22,9 +22,9 @@ class PokemonViewModel @Inject constructor(
             initialValue = listOf()
         )
 
-    fun updateDatabase() {
+    fun updateDatabaseByNetwork() {
         viewModelScope.launch {
-            pokemonRepository.updateDatabase()
+            pokemonRepository.synchronize()
         }
     }
 }
