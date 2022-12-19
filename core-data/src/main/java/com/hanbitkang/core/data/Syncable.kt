@@ -1,8 +1,11 @@
 package com.hanbitkang.core.data
 
 /**
- * An interface for a class that is synchronized with remote.
+ * Interface for a class that is synchronized with remote.
  */
 interface Syncable {
+    /**
+     * A function that synchronizes database over network.
+     */
     suspend fun synchronize()
 }

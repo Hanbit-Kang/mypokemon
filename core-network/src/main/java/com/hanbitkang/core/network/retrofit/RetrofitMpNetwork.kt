@@ -22,7 +22,9 @@ private interface RetrofitMpNetworkApi {
 
 private const val MP_BASE_URL = "https://pokeapi.co/api/v2/"
 
-@Singleton
+/**
+ * [MpNetworkDataSource] implementation that fetches pokemon list over network.
+ */
 class RetrofitMpNetwork: MpNetworkDataSource {
 
     private val networkApi = Retrofit.Builder()
