@@ -23,17 +23,6 @@ class OfflineFirstPokemonRepository @Inject constructor(
         }
     }
 
-    // TODO: Remove it after networking logic implemented
-    override suspend fun updateDatabase() {
-        pokemonDao.insertPokemonEntities(
-            listOf(
-                PokemonEntity("1", "test"),
-                PokemonEntity("2", "test"),
-                PokemonEntity("3", "test"),
-            )
-        )
-    }
-
     override suspend fun synchronize() {
         val pokemonEntities = network.getPokemonList()
             .map(NetworkPokemon::toPokemon)

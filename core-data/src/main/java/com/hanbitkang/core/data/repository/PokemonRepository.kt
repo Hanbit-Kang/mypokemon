@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository : Syncable {
     fun getPokemonsStream(): Flow<List<Pokemon>>
-    suspend fun updateDatabase() // TODO: Remove it after networking logic implemented
 }

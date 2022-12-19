@@ -1,5 +1,6 @@
 package com.hanbitkang.feature.pokemon
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +25,7 @@ fun PokemonRoute(
     modifier: Modifier = Modifier,
     viewModel: PokemonViewModel = hiltViewModel(),
 ) {
+    viewModel.updateDatabaseByNetwork()
     PokemonScreen(viewModel)
 }
 
@@ -34,17 +36,6 @@ internal fun PokemonScreen(
     val pokemons: List<Pokemon> by viewModel.pokemons.collectAsState()
 
     Column {
-        Button(
-            onClick = {
-                CoroutineScope(Dispatchers.IO).launch {
-                    // TODO: Get pokemons by network to update local database
-                    viewModel.updateDatabase()
-                }
-            }
-        ) {
-            Text("Test")
-        }
-
         LazyColumn {
             items(pokemons) {
                 PokemonCard(pokemon = it)
