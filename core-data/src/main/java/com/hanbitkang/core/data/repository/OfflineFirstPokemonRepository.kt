@@ -7,6 +7,7 @@ import com.hanbitkang.core.database.model.PokemonEntity
 import com.hanbitkang.core.network.MpNetworkDataSource
 import com.hanbitkang.core.network.model.NetworkPokemon
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -24,9 +25,15 @@ class OfflineFirstPokemonRepository @Inject constructor(
     }
 
     override suspend fun synchronize() {
-        val pokemonEntities = network.getPokemonList()
+        val remotePokemons = network.getPokemonList()
             .map(NetworkPokemon::toPokemon)
             .map(Pokemon::toPokemonEntity)
-        pokemonDao.insertPokemonEntities(pokemonEntities)
+        val localPokemons = pokemonDao.getPokemonEntityStream().first()
+
+        val pokemonsToInsert = remotePokemons.minus(localPokemons.toSet())
+        val pokemonsToDelete = localPokemons.minus(remotePokemons.toSet())
+
+        pokemonDao.insertPokemonEntities(pokemonsToInsert)
+        pokemonDao.deletePokemonEntities(pokemonsToDelete)
     }
 }

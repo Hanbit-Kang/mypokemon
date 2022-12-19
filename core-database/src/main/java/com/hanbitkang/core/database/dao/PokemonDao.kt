@@ -1,9 +1,6 @@
 package com.hanbitkang.core.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.hanbitkang.core.database.model.PokemonEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -14,4 +11,7 @@ interface PokemonDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPokemonEntities(pokemonEntities: List<PokemonEntity>)
+
+    @Delete
+    suspend fun deletePokemonEntities(pokemonEntities: List<PokemonEntity>)
 }
