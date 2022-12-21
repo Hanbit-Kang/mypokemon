@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.hanbitkang.core.data.model.Pokemon
+import com.hanbitkang.core.ui.PokemonList
 
 @Composable
 fun PokemonRoute(
@@ -29,32 +30,15 @@ fun PokemonRoute(
 internal fun PokemonScreen(
     pokemonScreenUiState: PokemonScreenUiState
 ) {
-    LazyColumn {
-        when (pokemonScreenUiState) {
-            is PokemonScreenUiState.Success -> {
-                items(pokemonScreenUiState.pokemons) {
-                    PokemonCard(pokemon = it)
-                }
-            }
-            is PokemonScreenUiState.Loading -> {
-                // TODO
-            }
-            is PokemonScreenUiState.Error -> {
-                // TODO
-            }
+    when (pokemonScreenUiState) {
+        is PokemonScreenUiState.Success -> {
+            PokemonList(pokemonScreenUiState.pokemons)
         }
-    }
-}
-
-@Composable
-private fun PokemonCard(pokemon: Pokemon) {
-    Card {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            Text(pokemon.name)
+        is PokemonScreenUiState.Loading -> {
+            // TODO
+        }
+        is PokemonScreenUiState.Error -> {
+            // TODO
         }
     }
 }
