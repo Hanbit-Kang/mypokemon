@@ -32,7 +32,10 @@ internal fun PokemonScreen(
 ) {
     when (pokemonScreenUiState) {
         is PokemonScreenUiState.Success -> {
-            PokemonList(pokemonScreenUiState.pokemons)
+            PokemonList(
+                pokemons = pokemonScreenUiState.pokemons,
+                modifier = Modifier.padding(10.dp)
+            )
         }
         is PokemonScreenUiState.Loading -> {
             // TODO
