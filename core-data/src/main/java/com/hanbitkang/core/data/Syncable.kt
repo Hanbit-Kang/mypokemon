@@ -7,5 +7,5 @@ interface Syncable {
     /**
      * A function that synchronizes database over network.
      */
-    suspend fun synchronize()
+    suspend fun sync()
 }

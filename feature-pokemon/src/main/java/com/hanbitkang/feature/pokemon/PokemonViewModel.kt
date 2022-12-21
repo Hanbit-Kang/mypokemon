@@ -31,7 +31,7 @@ class PokemonViewModel @Inject constructor(
 
     fun updateDatabaseByNetwork() {
         viewModelScope.launch {
-            pokemonRepository.synchronize()
+            pokemonRepository.sync()
         }
     }
 }

@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository : Syncable {
     fun getPokemonsStream(): Flow<List<Pokemon>>
+    suspend fun syncWithPagination(page: Int)
 }
