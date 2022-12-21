@@ -19,20 +19,28 @@ fun PokemonRoute(
     modifier: Modifier = Modifier,
     viewModel: PokemonViewModel = hiltViewModel(),
 ) {
+    val pokemonScreenUiState: PokemonScreenUiState by viewModel.uiState.collectAsState()
+
     viewModel.updateDatabaseByNetwork()
-    PokemonScreen(viewModel)
+    PokemonScreen(pokemonScreenUiState)
 }
 
 @Composable
 internal fun PokemonScreen(
-    viewModel: PokemonViewModel
+    pokemonScreenUiState: PokemonScreenUiState
 ) {
-    val pokemons: List<Pokemon> by viewModel.pokemons.collectAsState()
-
-    Column {
-        LazyColumn {
-            items(pokemons) {
-                PokemonCard(pokemon = it)
+    LazyColumn {
+        when (pokemonScreenUiState) {
+            is PokemonScreenUiState.Success -> {
+                items(pokemonScreenUiState.pokemons) {
+                    PokemonCard(pokemon = it)
+                }
+            }
+            is PokemonScreenUiState.Loading -> {
+                // TODO
+            }
+            is PokemonScreenUiState.Error -> {
+                // TODO
             }
         }
     }
