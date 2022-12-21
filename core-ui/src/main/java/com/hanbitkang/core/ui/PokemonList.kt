@@ -10,13 +10,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.hanbitkang.core.data.model.Pokemon
 
 @Composable
 fun PokemonList(
     pokemons: List<Pokemon>
 ) {
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier.padding(8.dp)
+    ) {
         items(pokemons) {
             PokemonCard(pokemon = it)
         }
@@ -31,6 +34,10 @@ private fun PokemonCard(pokemon: Pokemon) {
                 .fillMaxWidth()
                 .padding(8.dp)
         ) {
+            AsyncImage(
+                model = pokemon.getImageUrl(),
+                contentDescription = null
+            )
             Text(pokemon.name)
         }
     }
