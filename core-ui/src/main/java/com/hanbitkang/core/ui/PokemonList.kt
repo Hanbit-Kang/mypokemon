@@ -45,10 +45,12 @@ fun PokemonList(
 private fun PokemonCard(pokemon: Pokemon) {
     Card {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally ,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
+                .height(150.dp),
         ) {
             AsyncImage(
                 model = pokemon.getImageUrl(),
