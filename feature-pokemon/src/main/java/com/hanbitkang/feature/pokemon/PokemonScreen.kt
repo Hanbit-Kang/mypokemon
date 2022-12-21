@@ -21,20 +21,25 @@ fun PokemonRoute(
     viewModel: PokemonViewModel = hiltViewModel(),
 ) {
     val pokemonScreenUiState: PokemonScreenUiState by viewModel.uiState.collectAsState()
-
-    viewModel.updateDatabaseByNetwork()
-    PokemonScreen(pokemonScreenUiState)
+    PokemonScreen(
+        pokemonScreenUiState = pokemonScreenUiState,
+        onScrollBottom = {
+            viewModel.fetchNextPokemonPage()
+        }
+    )
 }
 
 @Composable
 internal fun PokemonScreen(
-    pokemonScreenUiState: PokemonScreenUiState
+    pokemonScreenUiState: PokemonScreenUiState,
+    onScrollBottom: () -> Unit
 ) {
     when (pokemonScreenUiState) {
         is PokemonScreenUiState.Success -> {
             PokemonList(
+                modifier = Modifier.padding(10.dp),
                 pokemons = pokemonScreenUiState.pokemons,
-                modifier = Modifier.padding(10.dp)
+                onScrollBottom = onScrollBottom
             )
         }
         is PokemonScreenUiState.Loading -> {

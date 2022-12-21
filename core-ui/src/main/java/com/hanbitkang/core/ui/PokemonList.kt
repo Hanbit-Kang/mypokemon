@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -18,8 +19,9 @@ import com.hanbitkang.core.data.model.Pokemon
 
 @Composable
 fun PokemonList(
+    modifier: Modifier = Modifier,
     pokemons: List<Pokemon>,
-    modifier: Modifier = Modifier
+    onScrollBottom: () -> Unit = {}
 ) {
     LazyVerticalGrid(
         modifier = modifier,
@@ -29,6 +31,12 @@ fun PokemonList(
     ) {
         items(pokemons) {
             PokemonCard(pokemon = it)
+        }
+        // This item works as a bottom scroll listener.
+        item {
+            LaunchedEffect(true) {
+                onScrollBottom()
+            }
         }
     }
 }

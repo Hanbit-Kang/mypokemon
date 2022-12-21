@@ -15,6 +15,9 @@ import javax.inject.Inject
 class PokemonViewModel @Inject constructor(
     private val pokemonRepository: PokemonRepository
 ) : ViewModel() {
+    // A pagination index for network
+    private val _pokemonPage = MutableStateFlow(0)
+
     private val pokemons: Flow<Result<List<Pokemon>>> = pokemonRepository.getPokemonsStream().asResult()
 
     val uiState: StateFlow<PokemonScreenUiState> = pokemons.mapLatest {
@@ -29,9 +32,17 @@ class PokemonViewModel @Inject constructor(
             initialValue = PokemonScreenUiState.Loading
         )
 
-    fun updateDatabaseByNetwork() {
+    init {
         viewModelScope.launch {
-            pokemonRepository.sync()
+            _pokemonPage.collectLatest {
+                pokemonRepository.syncWithPagination(it)
+            }
+        }
+    }
+
+    fun fetchNextPokemonPage() {
+        if (uiState.value is PokemonScreenUiState.Success) {
+            _pokemonPage.value++
         }
     }
 }
