@@ -42,6 +42,8 @@ class RetrofitMpNetwork: MpNetworkDataSource {
         .build()
         .create(RetrofitMpNetworkApi::class.java)
 
-    override suspend fun getPokemonList(): List<NetworkPokemon> =
-        networkApi.getPokemonList().results
+    override suspend fun getPokemonList(
+        limit: Int,
+        offset: Int
+    ): List<NetworkPokemon> = networkApi.getPokemonList(limit, offset).results
 }

@@ -13,40 +13,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.hanbitkang.core.data.model.Pokemon
+import com.hanbitkang.core.ui.PokemonList
 
 @Composable
 fun PokemonRoute(
     modifier: Modifier = Modifier,
     viewModel: PokemonViewModel = hiltViewModel(),
 ) {
-    viewModel.updateDatabaseByNetwork()
-    PokemonScreen(viewModel)
+    val pokemonScreenUiState: PokemonScreenUiState by viewModel.uiState.collectAsState()
+    PokemonScreen(
+        pokemonScreenUiState = pokemonScreenUiState,
+        onScrollBottom = {
+            viewModel.fetchNextPokemonPage()
+        }
+    )
 }
 
 @Composable
 internal fun PokemonScreen(
-    viewModel: PokemonViewModel
+    pokemonScreenUiState: PokemonScreenUiState,
+    onScrollBottom: () -> Unit
 ) {
-    val pokemons: List<Pokemon> by viewModel.pokemons.collectAsState()
-
-    Column {
-        LazyColumn {
-            items(pokemons) {
-                PokemonCard(pokemon = it)
-            }
+    when (pokemonScreenUiState) {
+        is PokemonScreenUiState.Success -> {
+            PokemonList(
+                modifier = Modifier.padding(10.dp),
+                pokemons = pokemonScreenUiState.pokemons,
+                onScrollBottom = onScrollBottom
+            )
         }
-    }
-}
-
-@Composable
-private fun PokemonCard(pokemon: Pokemon) {
-    Card {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            Text(pokemon.name)
+        is PokemonScreenUiState.Loading -> {
+            // TODO
+        }
+        is PokemonScreenUiState.Error -> {
+            // TODO
         }
     }
 }

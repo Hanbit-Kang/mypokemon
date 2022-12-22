@@ -9,5 +9,5 @@ import retrofit2.http.Query
  * Interface representing network calls to pokeapi`
  */
 interface MpNetworkDataSource {
-    suspend fun getPokemonList(): List<NetworkPokemon>
+    suspend fun getPokemonList(limit: Int, offset: Int): List<NetworkPokemon>
 }

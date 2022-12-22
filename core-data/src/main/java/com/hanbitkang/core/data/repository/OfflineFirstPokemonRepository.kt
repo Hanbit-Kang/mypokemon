@@ -27,16 +27,23 @@ class OfflineFirstPokemonRepository @Inject constructor(
         }
     }
 
-    override suspend fun synchronize() {
-        val remotePokemons = network.getPokemonList()
+    override suspend fun sync() {
+        syncWithPagination(0)
+    }
+
+    override suspend fun syncWithPagination(page: Int) {
+        val remotePokemons = network.getPokemonList(
+            PAGING_SIZE, PAGING_SIZE * page
+        )
             .map(NetworkPokemon::toPokemon)
             .map(Pokemon::toPokemonEntity)
         val localPokemons = pokemonDao.getPokemonEntityStream().first()
 
         val pokemonsToInsert = remotePokemons.minus(localPokemons.toSet())
-        val pokemonsToDelete = localPokemons.minus(remotePokemons.toSet())
-
         pokemonDao.insertPokemonEntities(pokemonsToInsert)
-        pokemonDao.deletePokemonEntities(pokemonsToDelete)
+    }
+
+    companion object {
+        private const val PAGING_SIZE = 20
     }
 }
