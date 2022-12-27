@@ -24,9 +24,9 @@ fun MpApp(
         Scaffold (
             bottomBar = {
                 MpBottomBar(
-                    appState.navController,
-                    appState.topLevelDestinations,
-                    appState.currentDestination
+                    destinations = appState.topLevelDestinations,
+                    onNavigateToDestination = appState::navigate,
+                    currentDestination = appState.currentDestination
                 )
             }
         ) { padding ->
@@ -40,8 +40,8 @@ fun MpApp(
 
 @Composable
 private fun MpBottomBar(
-    navController: NavHostController,
     destinations: List<TopLevelDestination>,
+    onNavigateToDestination: (TopLevelDestination) -> Unit,
     currentDestination: NavDestination?
 ) {
     BottomNavigation(
@@ -52,16 +52,7 @@ private fun MpBottomBar(
             val selected = currentDestination?.hierarchy?.any { it.route == destination.route } == true
             BottomNavigationItem(
                 selected = selected,
-                onClick = {
-                    navController.navigate(destination.route) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                },
+                onClick = { onNavigateToDestination(destination) },
                 icon = {
                     val iconId = if (selected) destination.selectedIconId else destination.unselectedIconId
                     Icon(painter = painterResource(id = iconId), contentDescription = null)

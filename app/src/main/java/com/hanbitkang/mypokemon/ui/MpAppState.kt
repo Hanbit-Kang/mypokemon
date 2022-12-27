@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.hanbitkang.core.designsystem.MpNavigationDestination
 import com.hanbitkang.core.designsystem.icon.MpIcons
 import com.hanbitkang.feature.favorite.navigation.FavoriteDestination
 import com.hanbitkang.feature.pokemon.navigation.PokemonDestination
@@ -44,4 +46,22 @@ class MpAppState(
             com.hanbitkang.feature.pokemon.R.string.pokemon_list
         )
     )
+
+    fun navigate(
+        destination: MpNavigationDestination,
+        route: String? = null
+    ) {
+        if (destination is TopLevelDestination) {
+            navController.navigate(route ?: destination.route) {
+                popUpTo(navController.graph.findStartDestination().id) {
+                    saveState = true
+                }
+
+                launchSingleTop = true
+                restoreState = true
+            }
+        } else {
+            navController.navigate(route ?: destination.route)
+        }
+    }
 }
