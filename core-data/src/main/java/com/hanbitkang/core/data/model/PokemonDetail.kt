@@ -8,25 +8,15 @@ data class PokemonDetail (
     val name: String,
     val height: Int,
     val weight: Int,
-    val experience: Int,
-    val types: List<TypeResponse>,
-    val hp: Int,
-    val attack: Int,
-    val defense: Int,
-    val speed: Int,
-    val exp: Int
-)
+    val types: List<String>,
+) {
+    fun getImageUrl() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
+}
 
 fun NetworkPokemonDetail.toPokemonDetail() = PokemonDetail(
     id = id,
     name = name,
     height = height,
     weight = weight,
-    experience = experience,
-    types = types,
-    hp = hp,
-    attack = attack,
-    defense = defense,
-    speed = speed,
-    exp = exp
+    types = types.map { it.type.name }
 )

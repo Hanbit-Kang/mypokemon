@@ -20,9 +20,9 @@ class PokemonDetailViewModel @Inject constructor(
 
     private val pokemonId: Int = savedStateHandle[PokemonDetailDestination.pokemonIdArg] ?: 0
 
-    private val pokemon: Flow<Result<PokemonDetail>> = pokemonRepository.getPokemon(pokemonId).asResult()
+    private val pokemonDetail: Flow<Result<PokemonDetail>> = pokemonRepository.getPokemon(pokemonId).asResult()
 
-    val uiState: StateFlow<PokemonDetailScreenUiState> = pokemon.mapLatest {
+    val uiState: StateFlow<PokemonDetailScreenUiState> = pokemonDetail.mapLatest {
         when (it) {
             is Result.Success -> PokemonDetailScreenUiState.Success(it.data)
             is Result.Loading -> PokemonDetailScreenUiState.Loading
@@ -41,7 +41,7 @@ class PokemonDetailViewModel @Inject constructor(
 }
 
 sealed interface PokemonDetailScreenUiState {
-    data class Success(val pokemon: PokemonDetail) : PokemonDetailScreenUiState
+    data class Success(val pokemonDetail: PokemonDetail) : PokemonDetailScreenUiState
     object Loading : PokemonDetailScreenUiState
     object Error : PokemonDetailScreenUiState
 }
