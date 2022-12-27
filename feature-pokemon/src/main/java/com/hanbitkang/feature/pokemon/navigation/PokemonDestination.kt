@@ -12,7 +12,7 @@ object PokemonDestination : MpNavigationDestination {
 }
 
 fun NavGraphBuilder.pokemonGraph(
-    navigateToPokemonDetail: (String) -> Unit,
+    navigateToPokemonDetail: (Int) -> Unit,
     nestedGraphs: NavGraphBuilder.() -> Unit
 ) {
     navigation(

@@ -22,8 +22,8 @@ import com.hanbitkang.core.data.model.Pokemon
 fun PokemonList(
     modifier: Modifier = Modifier,
     pokemons: List<Pokemon>,
-    navigateToPokemonDetail: (String) -> Unit,
-    onScrollBottom: () -> Unit = {}
+    navigateToPokemonDetail: (Int) -> Unit,
+    onScrollBottom: () -> Unit
 ) {
     LazyVerticalGrid(
         modifier = modifier,
@@ -50,7 +50,7 @@ fun PokemonList(
 @Composable
 private fun PokemonCard(
     pokemon: Pokemon,
-    navigateToPokemonDetail: (String) -> Unit,
+    navigateToPokemonDetail: (Int) -> Unit,
 ) {
     Card(
         onClick = {

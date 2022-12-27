@@ -10,7 +10,7 @@ import com.hanbitkang.core.ui.PokemonList
 @Composable
 fun PokemonRoute(
     modifier: Modifier = Modifier,
-    navigateToPokemonDetail: (String) -> Unit,
+    navigateToPokemonDetail: (Int) -> Unit,
     viewModel: PokemonViewModel = hiltViewModel(),
 ) {
     val pokemonScreenUiState: PokemonScreenUiState by viewModel.uiState.collectAsState()
@@ -26,7 +26,7 @@ fun PokemonRoute(
 @Composable
 internal fun PokemonScreen(
     pokemonScreenUiState: PokemonScreenUiState,
-    navigateToPokemonDetail: (String) -> Unit,
+    navigateToPokemonDetail: (Int) -> Unit,
     onScrollBottom: () -> Unit
 ) {
     when (pokemonScreenUiState) {

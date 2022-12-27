@@ -3,17 +3,22 @@ package com.hanbitkang.core.data.model
 import com.hanbitkang.core.database.model.PokemonEntity
 import com.hanbitkang.core.network.model.NetworkPokemon
 
+/**
+ * @param url example: https://pokeapi.co/api/v2/pokemon/1/
+ */
 data class Pokemon(
     val name: String,
     val url: String
 ) {
+
     fun toPokemonEntity() = PokemonEntity(
+        id = getPokemonId(),
         name = name,
         url = url
     )
 
-    fun getPokemonId(): String {
-        return url.split("/".toRegex()).dropLast(1).last()
+    fun getPokemonId(): Int {
+        return url.split("/".toRegex()).dropLast(1).last().toInt()
     }
 
     fun getImageUrl(): String {

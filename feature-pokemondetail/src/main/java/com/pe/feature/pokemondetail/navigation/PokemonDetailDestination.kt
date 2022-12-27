@@ -12,7 +12,7 @@ object PokemonDetailDestination : MpNavigationDestination {
     override val route = "pokemon_detail_route/{$pokemonIdArg}"
     override val destination = "pokemon_detail_destination"
 
-    fun createNavigationRoute(pokemonIdArg: String): String {
+    fun createNavigationRoute(pokemonIdArg: Int): String {
         return "pokemon_detail_route/$pokemonIdArg"
     }
 }
