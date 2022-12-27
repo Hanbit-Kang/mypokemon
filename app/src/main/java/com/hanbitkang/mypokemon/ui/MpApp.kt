@@ -32,6 +32,7 @@ fun MpApp(
         ) { padding ->
             MpNavHost(
                 navController = appState.navController,
+                appState::navigate,
                 modifier = Modifier.padding(padding)
             )
         }
