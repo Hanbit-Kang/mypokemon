@@ -30,9 +30,10 @@ class PokemonViewModel @Inject constructor(
         when (it) {
             is Result.Success -> PokemonScreenUiState.Success(it.data)
             is Result.Loading -> PokemonScreenUiState.Loading
-            else -> PokemonScreenUiState.Error
+            is Result.Error -> PokemonScreenUiState.Error
         }
-    }   .stateIn(
+    }
+        .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = PokemonScreenUiState.Loading
