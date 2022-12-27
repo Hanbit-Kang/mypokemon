@@ -26,7 +26,7 @@ class PokemonDetailViewModel @Inject constructor(
         when (it) {
             is Result.Success -> PokemonDetailScreenUiState.Success(it.data)
             is Result.Loading -> PokemonDetailScreenUiState.Loading
-            is Result.Error -> PokemonDetailScreenUiState.Error(it.exception)
+            is Result.Error -> PokemonDetailScreenUiState.Error
         }
     }
         .stateIn(
@@ -43,5 +43,5 @@ class PokemonDetailViewModel @Inject constructor(
 sealed interface PokemonDetailScreenUiState {
     data class Success(val pokemon: PokemonDetail) : PokemonDetailScreenUiState
     object Loading : PokemonDetailScreenUiState
-    data class Error(val exception: Throwable? = null) : PokemonDetailScreenUiState
+    object Error : PokemonDetailScreenUiState
 }

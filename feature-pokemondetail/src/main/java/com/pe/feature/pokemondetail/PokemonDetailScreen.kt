@@ -26,11 +26,9 @@ internal fun PokemonDetailScreen(
         }
         is PokemonDetailScreenUiState.Loading -> {
             // TODO
-            Text(text = "Loading")
         }
         is PokemonDetailScreenUiState.Error -> {
             // TODO
-            Text(text = pokemonDetailScreenUiState.exception.toString())
         }
     }
 }
