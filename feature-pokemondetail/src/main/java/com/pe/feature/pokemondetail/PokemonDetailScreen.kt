@@ -3,6 +3,7 @@ package com.pe.feature.pokemondetail
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -35,7 +36,12 @@ internal fun PokemonDetailScreen(
             PokemonDetailItem(pokemonDetail = pokemonDetailScreenUiState.pokemonDetail)
         }
         is PokemonDetailScreenUiState.Loading -> {
-            // TODO
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
         }
         is PokemonDetailScreenUiState.Error -> {
             // TODO
@@ -90,12 +96,12 @@ fun TypeList(
             Card(
                 modifier = Modifier.padding(4.dp, 0.dp)
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier.padding(8.dp, 0.dp)
-                ) {
-                    Text(text = it)
-                }
+                Text(
+                    text = it,
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(8.dp, 0.dp)
+                )
             }
         }
     }
@@ -114,26 +120,19 @@ fun InfoItem(
             modifier = Modifier
                 .width(100.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = name,
-                    textAlign = TextAlign.Center
-                )
-            }
+            Text(
+                text = name,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         }
         
         Spacer(modifier = Modifier.width(8.dp))
 
-        Row(
-            horizontalArrangement = Arrangement.End,
-            modifier = Modifier
-                .width(100.dp)
-        ) {
+        Box(modifier = Modifier.width(100.dp)) {
             Text(
-                text = value
+                text = value,
+                modifier = Modifier.align(Alignment.CenterEnd)
             )
         }
     }
