@@ -1,8 +1,8 @@
 package com.hanbitkang.mypokemon.ui
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,6 +16,7 @@ import com.hanbitkang.core.designsystem.theme.MyPokemonTheme
 import com.hanbitkang.mypokemon.navigation.MpNavHost
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MpApp(
     appState: MpAppState = rememberMpAppState()
@@ -34,7 +35,8 @@ fun MpApp(
                 navController = appState.navController,
                 onNavigateToDestination = appState::navigate,
                 onClickBackButton = appState::onClickBackButton,
-                modifier = Modifier.padding(padding)
+                modifier = Modifier
+                    .padding(padding)
             )
         }
     }
@@ -46,13 +48,13 @@ private fun MpBottomBar(
     onNavigateToDestination: (TopLevelDestination) -> Unit,
     currentDestination: NavDestination?
 ) {
-    BottomNavigation(
-        backgroundColor = Color.White,
-        contentColor = MaterialTheme.colorScheme.primary
+    NavigationBar(
+        containerColor = Color.Transparent,
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination?.hierarchy?.any { it.route == destination.route } == true
-            BottomNavigationItem(
+            NavigationBarItem(
                 selected = selected,
                 onClick = { onNavigateToDestination(destination) },
                 icon = {
