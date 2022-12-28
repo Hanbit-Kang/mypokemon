@@ -1,5 +1,6 @@
 package com.hanbitkang.feature.pokemon
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hanbitkang.core.data.model.Pokemon
@@ -7,6 +8,9 @@ import com.hanbitkang.core.data.repository.PokemonRepository
 import com.hanbitkang.core.common.Result
 import com.hanbitkang.core.common.asResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,13 +24,16 @@ class PokemonViewModel @Inject constructor(
 
     private val pokemons: Flow<Result<List<Pokemon>>> = pokemonRepository.getPokemonsStream().asResult()
 
+    private var isNetworkProcessing = false
+
     val uiState: StateFlow<PokemonScreenUiState> = pokemons.mapLatest {
         when (it) {
             is Result.Success -> PokemonScreenUiState.Success(it.data)
             is Result.Loading -> PokemonScreenUiState.Loading
-            else -> PokemonScreenUiState.Error
+            is Result.Error -> PokemonScreenUiState.Error
         }
-    }   .stateIn(
+    }
+        .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = PokemonScreenUiState.Loading
@@ -35,13 +42,17 @@ class PokemonViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _pokemonPage.collectLatest {
-                pokemonRepository.syncWithPagination(it)
+                isNetworkProcessing = true
+                CoroutineScope(Dispatchers.IO).launch {
+                    pokemonRepository.syncWithPagination(it)
+                    isNetworkProcessing = false
+                }
             }
         }
     }
 
     fun fetchNextPokemonPage() {
-        if (uiState.value is PokemonScreenUiState.Success) {
+        if (uiState.value is PokemonScreenUiState.Success && !isNetworkProcessing) {
             _pokemonPage.value++
         }
     }

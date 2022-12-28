@@ -2,14 +2,15 @@ package com.hanbitkang.core.network.retrofit
 
 import com.hanbitkang.core.network.MpNetworkDataSource
 import com.hanbitkang.core.network.model.NetworkPokemon
+import com.hanbitkang.core.network.model.NetworkPokemonDetail
 import com.hanbitkang.core.network.model.PokemonResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
-import javax.inject.Singleton
 
 private interface RetrofitMpNetworkApi {
 
@@ -18,6 +19,11 @@ private interface RetrofitMpNetworkApi {
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0
     ): PokemonResponse
+
+    @GET("pokemon/{id}")
+    suspend fun getPokemon(
+        @Path("id") id: Int
+    ): NetworkPokemonDetail
 }
 
 private const val MP_BASE_URL = "https://pokeapi.co/api/v2/"
@@ -46,4 +52,6 @@ class RetrofitMpNetwork: MpNetworkDataSource {
         limit: Int,
         offset: Int
     ): List<NetworkPokemon> = networkApi.getPokemonList(limit, offset).results
+
+    override suspend fun getPokemon(id: Int): NetworkPokemonDetail = networkApi.getPokemon(id)
 }

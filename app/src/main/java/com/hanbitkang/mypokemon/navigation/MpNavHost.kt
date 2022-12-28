@@ -1,17 +1,23 @@
 package com.hanbitkang.mypokemon.navigation
 
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.hanbitkang.core.designsystem.MpNavigationDestination
 import com.hanbitkang.feature.favorite.navigation.FavoriteDestination
 import com.hanbitkang.feature.favorite.navigation.favoriteGraph
-import com.hanbitkang.feature.pokemon.navigation.PokemonDestination
 import com.hanbitkang.feature.pokemon.navigation.pokemonGraph
+import com.pe.feature.pokemondetail.navigation.PokemonDetailDestination
+import com.pe.feature.pokemondetail.navigation.pokemonDetailGraph
 
 @Composable
 fun MpNavHost(
     navController: NavHostController,
+    onNavigateToDestination: (MpNavigationDestination, String) -> Unit,
+    onClickBackButton: () -> Unit,
     startDestination: String = FavoriteDestination.route,
     modifier: Modifier = Modifier
 ) {
@@ -21,6 +27,15 @@ fun MpNavHost(
         modifier = modifier
     ) {
         favoriteGraph()
-        pokemonGraph()
+        pokemonGraph(
+            navigateToPokemonDetail = {
+                onNavigateToDestination(
+                    PokemonDetailDestination, PokemonDetailDestination.createNavigationRoute(it)
+                )
+            },
+            nestedGraphs = {
+                pokemonDetailGraph(onClickBackButton = onClickBackButton)
+            }
+        )
     }
 }
