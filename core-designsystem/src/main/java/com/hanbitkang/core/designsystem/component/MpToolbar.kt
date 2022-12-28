@@ -1,4 +1,4 @@
-package com.hanbitkang.core.ui
+package com.hanbitkang.core.designsystem.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons

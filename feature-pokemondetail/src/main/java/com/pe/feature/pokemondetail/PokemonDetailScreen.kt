@@ -1,6 +1,5 @@
 package com.pe.feature.pokemondetail
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -17,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.hanbitkang.core.data.model.PokemonDetail
-import com.hanbitkang.core.ui.MpToolbar
+import com.hanbitkang.core.designsystem.component.MpToolbar
 
 @Composable
 fun PokemonDetailRoute(
