@@ -1,14 +1,14 @@
 package com.pe.feature.pokemondetail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -40,7 +40,13 @@ internal fun PokemonDetailScreen(
 
         when (uiState) {
             is PokemonDetailScreenUiState.Success -> {
-                PokemonDetailItem(pokemonDetail = uiState.pokemonDetail)
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    PokemonDetailItem(pokemonDetail = uiState.pokemonDetail)
+                }
             }
             is PokemonDetailScreenUiState.Loading -> {
                 Box(
@@ -61,35 +67,36 @@ internal fun PokemonDetailScreen(
 private fun PokemonDetailItem(
     pokemonDetail: PokemonDetail
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+    Card(
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        AsyncImage(
-            model = pokemonDetail.getImageUrl(),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-        )
-        Text(
-            pokemonDetail.name,
-            textAlign = TextAlign.Center,
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(32.dp)
+        ) {
+            AsyncImage(
+                model = pokemonDetail.getImageUrl(),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(150.dp)
+            )
+            Text(
+                pokemonDetail.name,
+                textAlign = TextAlign.Center,
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold
+            )
 
-        Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-        TypeList(types = pokemonDetail.types)
+            TypeList(types = pokemonDetail.types)
 
-        Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
-        InfoItem("height", pokemonDetail.height.toString())
-        InfoItem("weight", pokemonDetail.weight.toString())
+            InfoItem("height", pokemonDetail.height.toString())
+            InfoItem("weight", pokemonDetail.weight.toString())
+        }
     }
 }
 
