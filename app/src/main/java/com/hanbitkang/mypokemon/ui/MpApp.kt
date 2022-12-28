@@ -1,7 +1,6 @@
 package com.hanbitkang.mypokemon.ui
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,9 +9,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
-import com.hanbitkang.core.designsystem.theme.MyPokemonTheme
+import com.hanbitkang.core.designsystem.component.MpBackground
+import com.hanbitkang.core.designsystem.theme.MpTheme
 import com.hanbitkang.mypokemon.navigation.MpNavHost
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
@@ -21,23 +19,25 @@ import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 fun MpApp(
     appState: MpAppState = rememberMpAppState()
 ) {
-    MyPokemonTheme {
-        Scaffold (
-            bottomBar = {
-                MpBottomBar(
-                    destinations = appState.topLevelDestinations,
+    MpTheme {
+        MpBackground {
+            Scaffold (
+                bottomBar = {
+                    MpBottomBar(
+                        destinations = appState.topLevelDestinations,
+                        onNavigateToDestination = appState::navigate,
+                        currentDestination = appState.currentDestination
+                    )
+                }
+            ) { padding ->
+                MpNavHost(
+                    navController = appState.navController,
                     onNavigateToDestination = appState::navigate,
-                    currentDestination = appState.currentDestination
+                    onClickBackButton = appState::onClickBackButton,
+                    modifier = Modifier
+                        .padding(padding)
                 )
             }
-        ) { padding ->
-            MpNavHost(
-                navController = appState.navController,
-                onNavigateToDestination = appState::navigate,
-                onClickBackButton = appState::onClickBackButton,
-                modifier = Modifier
-                    .padding(padding)
-            )
         }
     }
 }
