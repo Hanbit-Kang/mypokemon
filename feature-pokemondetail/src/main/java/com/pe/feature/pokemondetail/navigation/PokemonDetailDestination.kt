@@ -17,13 +17,15 @@ object PokemonDetailDestination : MpNavigationDestination {
     }
 }
 
-fun NavGraphBuilder.pokemonDetailGraph() {
+fun NavGraphBuilder.pokemonDetailGraph(
+    onClickBackButton: () -> Unit
+) {
     composable(
         route = PokemonDetailDestination.route,
         arguments = listOf(
             navArgument(PokemonDetailDestination.pokemonIdArg) { type = NavType.IntType }
         )
     ) {
-        PokemonDetailRoute()
+        PokemonDetailRoute(onClickBackButton = onClickBackButton)
     }
 }

@@ -9,7 +9,6 @@ import com.hanbitkang.core.ui.PokemonList
 
 @Composable
 fun PokemonRoute(
-    modifier: Modifier = Modifier,
     navigateToPokemonDetail: (Int) -> Unit,
     viewModel: PokemonViewModel = hiltViewModel(),
 ) {

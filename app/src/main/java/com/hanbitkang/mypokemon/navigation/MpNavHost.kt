@@ -15,6 +15,7 @@ import com.pe.feature.pokemondetail.navigation.pokemonDetailGraph
 fun MpNavHost(
     navController: NavHostController,
     onNavigateToDestination: (MpNavigationDestination, String) -> Unit,
+    onClickBackButton: () -> Unit,
     startDestination: String = FavoriteDestination.route,
     modifier: Modifier = Modifier
 ) {
@@ -31,7 +32,7 @@ fun MpNavHost(
                 )
             },
             nestedGraphs = {
-                pokemonDetailGraph()
+                pokemonDetailGraph(onClickBackButton = onClickBackButton)
             }
         )
     }

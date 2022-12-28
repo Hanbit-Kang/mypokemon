@@ -17,34 +17,43 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.hanbitkang.core.data.model.PokemonDetail
+import com.hanbitkang.core.ui.MpToolbar
 
 @Composable
 fun PokemonDetailRoute(
-    modifier: Modifier = Modifier,
+    onClickBackButton: () -> Unit,
     viewModel: PokemonDetailViewModel = hiltViewModel()
 ) {
-    val pokemonDetailScreenUiState: PokemonDetailScreenUiState by viewModel.uiState.collectAsState()
-    PokemonDetailScreen(pokemonDetailScreenUiState)
+    val uiState: PokemonDetailScreenUiState by viewModel.uiState.collectAsState()
+    PokemonDetailScreen(
+        uiState = uiState,
+        onClickBackButton = onClickBackButton
+    )
 }
 
 @Composable
 internal fun PokemonDetailScreen(
-    pokemonDetailScreenUiState: PokemonDetailScreenUiState
+    uiState: PokemonDetailScreenUiState,
+    onClickBackButton: () -> Unit
 ) {
-    when (pokemonDetailScreenUiState) {
-        is PokemonDetailScreenUiState.Success -> {
-            PokemonDetailItem(pokemonDetail = pokemonDetailScreenUiState.pokemonDetail)
-        }
-        is PokemonDetailScreenUiState.Loading -> {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+    Column {
+        MpToolbar(onClickBackButton = onClickBackButton)
+
+        when (uiState) {
+            is PokemonDetailScreenUiState.Success -> {
+                PokemonDetailItem(pokemonDetail = uiState.pokemonDetail)
             }
-        }
-        is PokemonDetailScreenUiState.Error -> {
-            // TODO
+            is PokemonDetailScreenUiState.Loading -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
+            }
+            is PokemonDetailScreenUiState.Error -> {
+                // TODO
+            }
         }
     }
 }
@@ -58,7 +67,7 @@ private fun PokemonDetailItem(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp, 32.dp)
+            .padding(16.dp)
     ) {
         AsyncImage(
             model = pokemonDetail.getImageUrl(),

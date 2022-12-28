@@ -64,4 +64,8 @@ class MpAppState(
             navController.navigate(route ?: destination.route)
         }
     }
+
+    fun onClickBackButton() {
+        navController.navigateUp()
+    }
 }
