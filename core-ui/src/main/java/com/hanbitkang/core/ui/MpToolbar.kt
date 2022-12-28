@@ -18,22 +18,26 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MpToolbar(
     title: String? = null,
-    onClickBackButton: () -> Unit?,
+    onClickBackButton: (() -> Unit)? = null,
+    fontSize: Int = 18,
+    verticalPadding: Int = 8
 ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp, verticalPadding.dp)
     ) {
-        IconButton(
-            onClick = { onClickBackButton() },
-            modifier = Modifier
-                .align(Alignment.CenterStart)
-        ) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = null
-            )
+        if (onClickBackButton != null) {
+            IconButton(
+                onClick = { onClickBackButton() },
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = null
+                )
+            }
         }
 
         Text(
@@ -42,7 +46,7 @@ fun MpToolbar(
                 .fillMaxWidth()
                 .align(Alignment.Center),
             textAlign = TextAlign.Center,
-            fontSize = 18.sp,
+            fontSize = fontSize.sp,
             fontWeight = FontWeight.SemiBold
         )
     }
