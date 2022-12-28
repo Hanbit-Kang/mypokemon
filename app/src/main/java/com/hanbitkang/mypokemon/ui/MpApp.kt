@@ -1,5 +1,6 @@
 package com.hanbitkang.mypokemon.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import com.hanbitkang.mypokemon.navigation.MpNavHost
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
 @OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MpApp(
     appState: MpAppState = rememberMpAppState()
@@ -29,13 +31,11 @@ fun MpApp(
                         currentDestination = appState.currentDestination
                     )
                 }
-            ) { padding ->
+            ) {
                 MpNavHost(
                     navController = appState.navController,
                     onNavigateToDestination = appState::navigate,
-                    onClickBackButton = appState::onClickBackButton,
-                    modifier = Modifier
-                        .padding(padding)
+                    onClickBackButton = appState::onClickBackButton
                 )
             }
         }
@@ -49,7 +49,7 @@ private fun MpBottomBar(
     currentDestination: NavDestination?
 ) {
     NavigationBar(
-        containerColor = Color.Transparent,
+        containerColor = Color.White,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant
     ) {
         destinations.forEach { destination ->

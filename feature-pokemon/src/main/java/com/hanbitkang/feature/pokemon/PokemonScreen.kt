@@ -34,8 +34,7 @@ internal fun PokemonScreen(
     Column {
         MpToolbar(
             title = stringResource(id = R.string.pokemon_list),
-            fontSize = 20,
-            verticalPadding = 16
+            fontSize = 20
         )
 
         when (uiState) {

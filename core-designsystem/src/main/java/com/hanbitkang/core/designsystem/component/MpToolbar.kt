@@ -19,13 +19,12 @@ import androidx.compose.ui.unit.sp
 fun MpToolbar(
     title: String? = null,
     onClickBackButton: (() -> Unit)? = null,
-    fontSize: Int = 18,
-    verticalPadding: Int = 8
+    fontSize: Int = 18
 ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp, verticalPadding.dp)
+            .padding(8.dp, 8.dp)
     ) {
         if (onClickBackButton != null) {
             IconButton(
