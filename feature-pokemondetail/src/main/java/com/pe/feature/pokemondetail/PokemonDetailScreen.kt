@@ -41,10 +41,10 @@ internal fun PokemonDetailScreen(
         when (uiState) {
             is PokemonDetailScreenUiState.Success -> {
                 Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
                 ) {
-                    Spacer(modifier = Modifier.height(16.dp))
                     PokemonDetailItem(pokemonDetail = uiState.pokemonDetail)
                 }
             }

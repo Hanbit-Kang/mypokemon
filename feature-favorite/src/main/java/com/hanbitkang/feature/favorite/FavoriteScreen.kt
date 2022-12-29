@@ -54,21 +54,27 @@ internal fun FavoriteScreen(
                 )
             }
             is FavoriteScreenUiState.Empty -> {
-                Spacer(modifier = Modifier.height(150.dp))
-                Image(
-                    painter = painterResource(id = com.hanbitkang.core.designsystem.R.drawable.ic_round_hide_source_24),
-                    contentDescription = null,
+                Column(
                     modifier = Modifier
-                        .size(100.dp)
                         .align(Alignment.CenterHorizontally)
-                )
-                Spacer(modifier = Modifier.height(15.dp))
-                Text(
-                    text = stringResource(id = R.string.empty_favorite_pokemon),
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally),
-                    fontSize = 18.sp
-                )
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = com.hanbitkang.core.designsystem.R.drawable.ic_round_hide_source_24),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(100.dp)
+                            .align(Alignment.CenterHorizontally)
+                    )
+                    Spacer(modifier = Modifier.height(15.dp))
+                    Text(
+                        text = stringResource(id = R.string.empty_favorite_pokemon),
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally),
+                        fontSize = 18.sp
+                    )
+                }
             }
             is FavoriteScreenUiState.Loading -> {
                 // TODO

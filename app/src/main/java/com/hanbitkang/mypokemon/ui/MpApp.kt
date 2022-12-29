@@ -16,7 +16,6 @@ import com.hanbitkang.mypokemon.navigation.MpNavHost
 import com.hanbitkang.mypokemon.navigation.TopLevelDestination
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MpApp(
     appState: MpAppState = rememberMpAppState()
@@ -31,11 +30,12 @@ fun MpApp(
                         currentDestination = appState.currentDestination
                     )
                 }
-            ) {
+            ) { paddingValues ->
                 MpNavHost(
                     navController = appState.navController,
                     onNavigateToDestination = appState::navigate,
-                    onClickBackButton = appState::onClickBackButton
+                    onClickBackButton = appState::onClickBackButton,
+                    modifier = Modifier.padding(paddingValues)
                 )
             }
         }
