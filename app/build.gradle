@@ -53,7 +53,7 @@ dependencies {
     implementation project(path: ':core-navigation')
     implementation project(path: ':feature-pokemon')
     implementation project(path: ':feature-favorite')
-    implementation project(path: ':feature-pokemondetail')
+    implementation project(path: ':feature-detail')
 
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"

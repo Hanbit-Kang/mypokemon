@@ -1,4 +1,4 @@
-package com.pe.feature.pokemondetail
+package com.hanbitkang.feature.detail
 
 import org.junit.Test
 

@@ -8,8 +8,8 @@ import com.hanbitkang.core.designsystem.MpNavigationDestination
 import com.hanbitkang.feature.favorite.navigation.FavoriteDestination
 import com.hanbitkang.feature.favorite.navigation.favoriteGraph
 import com.hanbitkang.feature.pokemon.navigation.pokemonGraph
-import com.pe.feature.pokemondetail.navigation.PokemonDetailDestination
-import com.pe.feature.pokemondetail.navigation.pokemonDetailGraph
+import com.hanbitkang.feature.detail.navigation.PokemonDetailDestination
+import com.hanbitkang.feature.detail.navigation.pokemonDetailGraph
 
 @Composable
 fun MpNavHost(

@@ -1,4 +1,4 @@
-package com.pe.feature.pokemondetail
+package com.hanbitkang.feature.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,7 @@ import com.hanbitkang.core.common.Result
 import com.hanbitkang.core.common.asResult
 import com.hanbitkang.core.data.model.PokemonDetail
 import com.hanbitkang.core.data.repository.PokemonRepository
-import com.pe.feature.pokemondetail.navigation.PokemonDetailDestination
+import com.hanbitkang.feature.detail.navigation.PokemonDetailDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject

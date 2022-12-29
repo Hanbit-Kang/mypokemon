@@ -9,9 +9,9 @@
       <module name="MyPokemon.core-designsystem" target="11" />
       <module name="MyPokemon.core-network" target="11" />
       <module name="MyPokemon.core-ui" target="11" />
+      <module name="MyPokemon.feature-detail" target="11" />
       <module name="MyPokemon.feature-favorite" target="11" />
       <module name="MyPokemon.feature-pokemon" target="11" />
-      <module name="MyPokemon.feature-pokemondetail" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

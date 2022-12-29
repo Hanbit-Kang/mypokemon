@@ -1,11 +1,11 @@
-package com.pe.feature.pokemondetail.navigation
+package com.hanbitkang.feature.detail.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.hanbitkang.core.designsystem.MpNavigationDestination
-import com.pe.feature.pokemondetail.PokemonDetailRoute
+import com.hanbitkang.feature.detail.PokemonDetailRoute
 
 object PokemonDetailDestination : MpNavigationDestination {
     const val pokemonIdArg = "pokemonId"
