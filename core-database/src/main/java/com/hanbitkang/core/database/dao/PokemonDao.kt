@@ -9,7 +9,7 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon ORDER BY pokemon.id")
     fun getPokemonEntityStream(): Flow<List<PokemonEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertPokemonEntities(pokemonEntities: List<PokemonEntity>)
 
     @Delete

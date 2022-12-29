@@ -9,7 +9,7 @@ import com.hanbitkang.core.database.model.PokemonEntity
     entities = [
         PokemonEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 abstract class MpDatabase: RoomDatabase() {

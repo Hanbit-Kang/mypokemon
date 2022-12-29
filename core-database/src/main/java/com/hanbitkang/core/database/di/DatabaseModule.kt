@@ -22,5 +22,7 @@ object DatabaseModule {
         context,
         MpDatabase::class.java,
         "mp-database"
-    ).build()
+    )
+        .fallbackToDestructiveMigration()
+        .build()
 }
