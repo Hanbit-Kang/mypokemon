@@ -10,6 +10,9 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon ORDER BY pokemon.id")
     fun getPokemonEntityStream(): Flow<List<PokemonEntity>>
 
+    @Query("SELECT * FROM pokemon WHERE pokemon.isFavorite == 1 ORDER BY pokemon.id")
+    fun getFavoritePokemonEntityStream(): Flow<List<PokemonEntity>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPokemonEntities(pokemonEntities: List<PokemonEntity>)
 

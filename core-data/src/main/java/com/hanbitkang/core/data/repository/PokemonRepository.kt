@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository : Syncable {
     fun getPokemonsStream(): Flow<List<Pokemon>>
+    fun getFavoritePokemonsStream(): Flow<List<Pokemon>>
     fun getPokemon(id: Int): Flow<PokemonDetail>
     suspend fun updatePokemon(pokemonEntity: PokemonEntity)
     suspend fun syncWithPagination(page: Int)

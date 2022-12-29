@@ -20,12 +20,8 @@ fun PokemonRoute(
     PokemonScreen(
         uiState = uiState,
         navigateToPokemonDetail = navigateToPokemonDetail,
-        onScrollBottom = {
-            viewModel.fetchNextPokemonPage()
-        },
-        switchIsFavorite = {
-            viewModel.switchIsFavorite(it)
-        }
+        onScrollBottom = viewModel::fetchNextPokemonPage,
+        switchIsFavorite = viewModel::switchIsFavorite
     )
 }
 
@@ -45,7 +41,6 @@ internal fun PokemonScreen(
         when (uiState) {
             is PokemonScreenUiState.Success -> {
                 PokemonList(
-                    modifier = Modifier.padding(10.dp),
                     pokemons = uiState.pokemons,
                     navigateToPokemonDetail = navigateToPokemonDetail,
                     onScrollBottom = onScrollBottom,

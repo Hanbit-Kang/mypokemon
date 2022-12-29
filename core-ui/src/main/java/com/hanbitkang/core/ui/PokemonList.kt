@@ -24,11 +24,12 @@ fun PokemonList(
     modifier: Modifier = Modifier,
     pokemons: List<Pokemon>,
     navigateToPokemonDetail: (Int) -> Unit,
-    onScrollBottom: () -> Unit,
+    onScrollBottom: () -> Unit = {},
     switchIsFavorite: (Pokemon) -> Unit,
 ) {
     LazyVerticalGrid(
-        modifier = modifier,
+        modifier = modifier
+            .padding(10.dp),
         columns = GridCells.Fixed(3),
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp)

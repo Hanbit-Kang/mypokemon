@@ -24,7 +24,16 @@ fun MpNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        favoriteGraph()
+        favoriteGraph(
+            navigateToPokemonDetail = {
+                onNavigateToDestination(
+                    PokemonDetailDestination, PokemonDetailDestination.createNavigationRoute(it)
+                )
+            },
+            nestedGraphs = {
+                pokemonDetailGraph(onClickBackButton = onClickBackButton)
+            }
+        )
         pokemonGraph(
             navigateToPokemonDetail = {
                 onNavigateToDestination(

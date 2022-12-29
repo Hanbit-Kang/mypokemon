@@ -8,6 +8,7 @@ import com.hanbitkang.core.data.model.Pokemon
 import com.hanbitkang.core.data.repository.PokemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,11 +16,14 @@ class FavoriteViewModel @Inject constructor(
     private val pokemonRepository: PokemonRepository
 ) : ViewModel() {
 
-    private val favoritePokemons: Flow<Result<List<Pokemon>>> = pokemonRepository.getPokemonsStream().asResult()
+    private val favoritePokemons: Flow<Result<List<Pokemon>>> = pokemonRepository.getFavoritePokemonsStream().asResult()
 
     val uiState: StateFlow<FavoriteScreenUiState> = favoritePokemons.mapLatest {
         when (it) {
-            is Result.Success -> FavoriteScreenUiState.Success(it.data)
+            is Result.Success -> {
+                if (it.data.isNotEmpty()) FavoriteScreenUiState.Success(it.data)
+                else FavoriteScreenUiState.Empty
+            }
             is Result.Loading -> FavoriteScreenUiState.Loading
             is Result.Error -> FavoriteScreenUiState.Error
         }
@@ -30,10 +34,18 @@ class FavoriteViewModel @Inject constructor(
             initialValue = FavoriteScreenUiState.Loading
         )
 
+    fun switchIsFavorite(pokemon: Pokemon) {
+        viewModelScope.launch {
+            pokemonRepository.updatePokemon(
+                pokemon.toPokemonEntity().apply { isFavorite = !pokemon.isFavorite }
+            )
+        }
+    }
 }
 
 sealed interface FavoriteScreenUiState {
     data class Success(val favoritePokemons: List<Pokemon>) : FavoriteScreenUiState
+    object Empty : FavoriteScreenUiState
     object Loading : FavoriteScreenUiState
     object Error : FavoriteScreenUiState
 }

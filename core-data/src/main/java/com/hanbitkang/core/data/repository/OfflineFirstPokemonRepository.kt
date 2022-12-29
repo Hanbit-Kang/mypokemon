@@ -30,6 +30,14 @@ class OfflineFirstPokemonRepository @Inject constructor(
         }
     }
 
+    override fun getFavoritePokemonsStream(): Flow<List<Pokemon>> {
+        return pokemonDao.getFavoritePokemonEntityStream().map { pokemonEntities ->
+            pokemonEntities.map {
+                it.toPokemon()
+            }
+        }
+    }
+
     override fun getPokemon(id: Int): Flow<PokemonDetail> {
         return flow {
             val networkPokemonDetail = network.getPokemon(id)
