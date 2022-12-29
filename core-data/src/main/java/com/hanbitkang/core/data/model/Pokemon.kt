@@ -8,7 +8,8 @@ import com.hanbitkang.core.network.model.NetworkPokemon
  */
 data class Pokemon(
     val name: String,
-    val url: String
+    val url: String,
+    val isFavorite: Boolean = false
 ) {
 
     fun toPokemonEntity() = PokemonEntity(
@@ -34,5 +35,6 @@ fun NetworkPokemon.toPokemon() = Pokemon(
 
 fun PokemonEntity.toPokemon() = Pokemon(
     name = name,
-    url = url
+    url = url,
+    isFavorite = isFavorite
 )
