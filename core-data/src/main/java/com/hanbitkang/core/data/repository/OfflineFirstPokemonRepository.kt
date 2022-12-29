@@ -37,6 +37,10 @@ class OfflineFirstPokemonRepository @Inject constructor(
         }
     }
 
+    override suspend fun updatePokemon(pokemonEntity: PokemonEntity) {
+        pokemonDao.updatePokemonEntity(pokemonEntity)
+    }
+
     override suspend fun sync() {
         syncWithPagination(0)
     }

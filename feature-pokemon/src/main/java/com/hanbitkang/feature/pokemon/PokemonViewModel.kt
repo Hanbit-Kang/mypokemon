@@ -56,6 +56,14 @@ class PokemonViewModel @Inject constructor(
             _pokemonPage.value++
         }
     }
+
+    fun switchIsFavorite(pokemon: Pokemon) {
+        viewModelScope.launch {
+            pokemonRepository.updatePokemon(
+                pokemon.toPokemonEntity().apply { isFavorite = !pokemon.isFavorite }
+            )
+        }
+    }
 }
 
 sealed interface PokemonScreenUiState {

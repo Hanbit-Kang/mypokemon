@@ -6,12 +6,16 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
+
     @Query("SELECT * FROM pokemon ORDER BY pokemon.id")
     fun getPokemonEntityStream(): Flow<List<PokemonEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPokemonEntities(pokemonEntities: List<PokemonEntity>)
 
     @Delete
     suspend fun deletePokemonEntities(pokemonEntities: List<PokemonEntity>)
+
+    @Update
+    suspend fun updatePokemonEntity(pokemonEntity: PokemonEntity)
 }

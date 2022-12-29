@@ -24,7 +24,8 @@ fun PokemonList(
     modifier: Modifier = Modifier,
     pokemons: List<Pokemon>,
     navigateToPokemonDetail: (Int) -> Unit,
-    onScrollBottom: () -> Unit
+    onScrollBottom: () -> Unit,
+    switchIsFavorite: (Pokemon) -> Unit,
 ) {
     LazyVerticalGrid(
         modifier = modifier,
@@ -35,7 +36,8 @@ fun PokemonList(
         items(pokemons) {
             PokemonCard(
                 pokemon = it,
-                navigateToPokemonDetail = navigateToPokemonDetail
+                navigateToPokemonDetail = navigateToPokemonDetail,
+                switchIsFavorite = switchIsFavorite
             )
         }
         // This item works as a bottom scroll listener.
@@ -52,6 +54,7 @@ fun PokemonList(
 private fun PokemonCard(
     pokemon: Pokemon,
     navigateToPokemonDetail: (Int) -> Unit,
+    switchIsFavorite: (Pokemon) -> Unit,
 ) {
     Card(
         onClick = {
@@ -79,7 +82,7 @@ private fun PokemonCard(
             }
 
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = { switchIsFavorite(pokemon) },
                 modifier = Modifier.align(Alignment.TopEnd)
             ) {
                 Icon(
