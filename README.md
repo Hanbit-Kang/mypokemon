@@ -1,6 +1,6 @@
 # My Pokemon
 
-My Pokemon demonstrates Compose android app with Hilt, Coroutines, Flow, Room based on MVVM architecture and modularization.
+My Pokemon demonstrates Compose android app with Hilt, Coroutines, Flow, Room based on MVVM architecture and modularization. In particular, the app has been built entirely with Jetpack Compose.
 
 ![main](https://user-images.githubusercontent.com/58168528/209945189-6fe412e8-221f-46c3-8aea-ad52ec4aa16a.png)
 
