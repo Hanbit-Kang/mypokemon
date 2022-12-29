@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.hanbitkang.core.data.model.Pokemon
 import com.hanbitkang.core.designsystem.component.MpToolbar
 import com.hanbitkang.core.ui.PokemonList
 
@@ -19,9 +20,8 @@ fun PokemonRoute(
     PokemonScreen(
         uiState = uiState,
         navigateToPokemonDetail = navigateToPokemonDetail,
-        onScrollBottom = {
-            viewModel.fetchNextPokemonPage()
-        }
+        onScrollBottom = viewModel::fetchNextPokemonPage,
+        switchIsFavorite = viewModel::switchIsFavorite
     )
 }
 
@@ -29,7 +29,8 @@ fun PokemonRoute(
 internal fun PokemonScreen(
     uiState: PokemonScreenUiState,
     navigateToPokemonDetail: (Int) -> Unit,
-    onScrollBottom: () -> Unit
+    onScrollBottom: () -> Unit,
+    switchIsFavorite: (Pokemon) -> Unit,
 ) {
     Column {
         MpToolbar(
@@ -40,10 +41,10 @@ internal fun PokemonScreen(
         when (uiState) {
             is PokemonScreenUiState.Success -> {
                 PokemonList(
-                    modifier = Modifier.padding(10.dp),
                     pokemons = uiState.pokemons,
                     navigateToPokemonDetail = navigateToPokemonDetail,
-                    onScrollBottom = onScrollBottom
+                    onScrollBottom = onScrollBottom,
+                    switchIsFavorite = switchIsFavorite
                 )
             }
             is PokemonScreenUiState.Loading -> {

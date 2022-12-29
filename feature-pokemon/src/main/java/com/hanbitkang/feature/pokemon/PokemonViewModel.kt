@@ -19,12 +19,14 @@ import javax.inject.Inject
 class PokemonViewModel @Inject constructor(
     private val pokemonRepository: PokemonRepository
 ) : ViewModel() {
+
     // A pagination index for network
     private val _pokemonPage = MutableStateFlow(0)
 
-    private val pokemons: Flow<Result<List<Pokemon>>> = pokemonRepository.getPokemonsStream().asResult()
-
+    // Blocks network when this equals true
     private var isNetworkProcessing = false
+
+    private val pokemons: Flow<Result<List<Pokemon>>> = pokemonRepository.getPokemonsStream().asResult()
 
     val uiState: StateFlow<PokemonScreenUiState> = pokemons.mapLatest {
         when (it) {
@@ -54,6 +56,14 @@ class PokemonViewModel @Inject constructor(
     fun fetchNextPokemonPage() {
         if (uiState.value is PokemonScreenUiState.Success && !isNetworkProcessing) {
             _pokemonPage.value++
+        }
+    }
+
+    fun switchIsFavorite(pokemon: Pokemon) {
+        viewModelScope.launch {
+            pokemonRepository.updatePokemon(
+                pokemon.toPokemonEntity().apply { isFavorite = !pokemon.isFavorite }
+            )
         }
     }
 }
