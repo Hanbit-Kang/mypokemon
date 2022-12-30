@@ -34,10 +34,6 @@ class PokemonDetailViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = PokemonDetailScreenUiState.Loading
         )
-
-    init {
-        pokemonRepository.getPokemon(1)
-    }
 }
 
 sealed interface PokemonDetailScreenUiState {

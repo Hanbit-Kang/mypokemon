@@ -1,6 +1,10 @@
 package com.hanbitkang.feature.detail
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,18 +38,18 @@ internal fun PokemonDetailScreen(
     uiState: PokemonDetailScreenUiState,
     onClickBackButton: () -> Unit
 ) {
-    Column {
-        MpToolbar(onClickBackButton = onClickBackButton)
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        MpToolbar(
+            onClickBackButton = onClickBackButton,
+            title = "Pokemon Detail"
+        )
 
         when (uiState) {
             is PokemonDetailScreenUiState.Success -> {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    PokemonDetailItem(pokemonDetail = uiState.pokemonDetail)
-                }
+                PokemonDetailItem(pokemonDetail = uiState.pokemonDetail)
             }
             is PokemonDetailScreenUiState.Loading -> {
                 Box(
@@ -67,12 +71,16 @@ private fun PokemonDetailItem(
     pokemonDetail: PokemonDetail
 ) {
     Card(
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(32.dp)
+            modifier = Modifier
+                .padding(32.dp)
+                .fillMaxWidth()
         ) {
             AsyncImage(
                 model = pokemonDetail.getImageUrl(),
@@ -86,25 +94,26 @@ private fun PokemonDetailItem(
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
             )
-
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             TypeList(types = pokemonDetail.types)
+            Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.height(32.dp))
+            HeightAndWeight(pokemonDetail)
+            Spacer(modifier = Modifier.height(24.dp))
 
-            InfoItem("height", pokemonDetail.height.toString())
-            InfoItem("weight", pokemonDetail.weight.toString())
+            StatList(pokemonDetail)
         }
     }
 }
+
 
 @Composable
 fun TypeList(
     types: List<String>
 ) {
     Row(
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         types.forEach {
             Card(
@@ -121,8 +130,58 @@ fun TypeList(
     }
 }
 
+
 @Composable
-fun InfoItem(
+fun HeightAndWeight(pokemonDetail: PokemonDetail) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        HeightWeightItem("HEIGHT", pokemonDetail.height)
+        HeightWeightItem("WEIGHT", pokemonDetail.weight)
+    }
+}
+
+@Composable
+fun HeightWeightItem(
+    name: String,
+    value: String
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = name
+        )
+        Text(
+            text = value,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+    }
+}
+
+
+@Composable
+fun StatList(pokemonDetail: PokemonDetail) {
+    Text(
+        text = "Stats",
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        items(pokemonDetail.stats) {
+            StatItem(name = it.first, value = it.second.toString())
+        }
+    }
+}
+
+@Composable
+fun StatItem(
     name: String,
     value: String
 ) {
@@ -131,8 +190,7 @@ fun InfoItem(
             .padding(8.dp)
     ) {
         Card(
-            modifier = Modifier
-                .width(100.dp)
+            modifier = Modifier.width(50.dp)
         ) {
             Text(
                 text = name,
@@ -143,7 +201,7 @@ fun InfoItem(
         
         Spacer(modifier = Modifier.width(8.dp))
 
-        Box(modifier = Modifier.width(100.dp)) {
+        Box(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = value,
                 modifier = Modifier.align(Alignment.CenterEnd)
