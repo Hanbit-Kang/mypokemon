@@ -1,16 +1,15 @@
 package com.hanbitkang.feature.pokemon
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hanbitkang.core.data.model.Pokemon
+import com.hanbitkang.core.model.Pokemon
 import com.hanbitkang.core.data.repository.PokemonRepository
 import com.hanbitkang.core.common.Result
 import com.hanbitkang.core.common.asResult
+import com.hanbitkang.core.data.model.toPokemonEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

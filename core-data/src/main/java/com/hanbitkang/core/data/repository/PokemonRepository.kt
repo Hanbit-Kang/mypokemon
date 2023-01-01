@@ -1,10 +1,9 @@
 package com.hanbitkang.core.data.repository
 
 import com.hanbitkang.core.data.Syncable
-import com.hanbitkang.core.data.model.Pokemon
-import com.hanbitkang.core.data.model.PokemonDetail
 import com.hanbitkang.core.database.model.PokemonEntity
-import com.hanbitkang.core.network.model.NetworkPokemonDetail
+import com.hanbitkang.core.model.Pokemon
+import com.hanbitkang.core.model.PokemonDetail
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository : Syncable {

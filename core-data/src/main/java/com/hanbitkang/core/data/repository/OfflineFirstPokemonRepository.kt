@@ -1,14 +1,14 @@
 package com.hanbitkang.core.data.repository
 
-import com.hanbitkang.core.data.model.Pokemon
-import com.hanbitkang.core.data.model.PokemonDetail
 import com.hanbitkang.core.data.model.toPokemon
 import com.hanbitkang.core.data.model.toPokemonDetail
+import com.hanbitkang.core.data.model.toPokemonEntity
 import com.hanbitkang.core.database.dao.PokemonDao
 import com.hanbitkang.core.database.model.PokemonEntity
+import com.hanbitkang.core.model.Pokemon
+import com.hanbitkang.core.model.PokemonDetail
 import com.hanbitkang.core.network.MpNetworkDataSource
 import com.hanbitkang.core.network.model.NetworkPokemon
-import com.hanbitkang.core.network.model.NetworkPokemonDetail
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hanbitkang.core.common.Result
 import com.hanbitkang.core.common.asResult
-import com.hanbitkang.core.data.model.PokemonDetail
+import com.hanbitkang.core.model.PokemonDetail
 import com.hanbitkang.core.data.repository.PokemonRepository
 import com.hanbitkang.feature.detail.navigation.PokemonDetailDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
