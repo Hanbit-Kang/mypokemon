@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.hanbitkang.core.data.model.PokemonDetail
+import com.hanbitkang.core.model.PokemonDetail
 import com.hanbitkang.core.designsystem.component.MpToolbar
 
 @Composable

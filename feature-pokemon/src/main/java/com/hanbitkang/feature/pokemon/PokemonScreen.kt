@@ -1,14 +1,11 @@
 package com.hanbitkang.feature.pokemon
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.hanbitkang.core.data.model.Pokemon
 import com.hanbitkang.core.designsystem.component.MpToolbar
+import com.hanbitkang.core.model.Pokemon
 import com.hanbitkang.core.ui.PokemonList
 
 @Composable
