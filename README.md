@@ -21,9 +21,13 @@ My Pokemon demonstrates Compose android app with Hilt, Coroutines, Flow, Room ba
 ## Architecture
 My Pokemon follows the [Guide to app architecture](https://developer.android.com/topic/architecture).
 
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/58168528/210165862-ca8508a6-ffce-4cf6-98d0-b0b2127dd390.png">
+
+
 ## Multi Module
 My Pokemon completely modularizes each feature and layer.
-<img width="742" alt="image" src="https://user-images.githubusercontent.com/58168528/210165562-293e0f34-0cab-4ec1-a423-d43fd42d61b5.png">
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/58168528/210165562-293e0f34-0cab-4ec1-a423-d43fd42d61b5.png">
 
 
 # License
